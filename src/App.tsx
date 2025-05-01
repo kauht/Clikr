@@ -6,9 +6,7 @@ import "./App.css";
 function App() {
 
   return (
-    <main className="container">
-      <div className="App">
-        <div className="ClickInterval">
+    <div className="ClickInterval">
         <select className="IntervalSelect1">
             <option value="1">Miliseconds</option>
             <option value="2">Seconds</option>
@@ -22,8 +20,6 @@ function App() {
           </select>
           <input type="text" className="Time"/>
         </div>
-      </div>
-    </main>
   );
 }
 
