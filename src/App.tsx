@@ -1,6 +1,6 @@
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import { ArrowRight, MousePointer2, Settings as SettingsIcon, SwordIcon as Record, AppWindow } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ArrowRight, MousePointer2, Settings as SettingsIcon, SwordIcon as Record } from 'lucide-react';
+import { useState } from 'react';
 import "./App.css";
 import KInput from './components/kInput';
 import KSelect from './components/kSelect';
@@ -17,8 +17,8 @@ function App() {
 
   const [clickType, setClickType] = useState('Left');
   const [positionType, setPositionType] = useState('Current');
-  const [customKey, setCustomKey] = useState('');
-  const [isCustomKeyModalOpen, setIsCustomKeyModalOpen] = useState(false);
+  const [customKey] = useState('');
+  const [, setIsCustomKeyModalOpen] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [hotkey] = useState('F6');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);

@@ -1,4 +1,3 @@
-import { X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
 interface SettingsMenuProps {
