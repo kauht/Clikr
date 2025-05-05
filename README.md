@@ -2,11 +2,13 @@
 ## Tauri + React + Typescript
 
 ### To-Do
-- [ ] Center the "Auto Clicker" label
-- [ ] Make nav bar buttons work
-- [ ] Make theme work (use tailwind dark/light mode feature)
+- [x] Center the "Auto Clicker" label
+- [x] Make nav bar buttons work
+- [x] Change colors
+- [x] Make color palet instead of manually entering colors 
+- [x] Make theme work (use tailwind dark/light mode feature)
 - [ ] Change icon for Record & Playback button
-- [ ] Disable inspect element and right click
+- [x] Disable inspect element and right click
 - [ ] Add DPI scaling settings (default changes based on resolution)
 - [ ] Improve settings menu transition
 - [ ] Make click options select slider into a component for a rewrite
