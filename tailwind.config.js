@@ -19,6 +19,12 @@ export default {
         interactive: {
           light: '#e5e7eb',
           dark: '#131218'
+        },
+        'custom-purple': {
+          DEFAULT: '#9333EA', // purple-600
+          hover: '#A855F7',   // purple-500
+          light: '#F3E8FF',   // purple-100
+          dark: '#6B21A8'     // purple-800
         }
       }
     },

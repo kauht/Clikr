@@ -138,13 +138,13 @@ function App() {
             <div className="space-y-2">
               <div className="relative flex bg-interactive-light dark:bg-interactive-dark rounded-lg p-1 w-full overflow-hidden">
                 <div
-                  className="absolute inset-0 bg-purple-600/10 dark:bg-purple-600/5 transition-all duration-300"
+                  className="absolute inset-0 bg-custom-purple/10 dark:bg-custom-purple/5 transition-all duration-300"
                   style={{
                     transform: clickType === 'Custom' ? 'translateX(-100%)' : `translateX(${['Left', 'Middle', 'Right'].indexOf(clickType) * 33.333}%)`
                   }}
                 />
                 <div
-                  className="absolute inset-1 bg-purple-600 rounded-md transition-all duration-300 shadow-lg shadow-purple-500/20"
+                  className="absolute inset-1 bg-custom-purple rounded-md transition-all duration-300 shadow-lg shadow-custom-purple/20"
                   style={{
                     width: 'calc(33.333% - 2.8px)',
                     transform: clickType === 'Custom' ? 'translateX(-100%)' : `translateX(${['Left', 'Middle', 'Right'].indexOf(clickType) * 100}%)`
@@ -170,7 +170,7 @@ function App() {
                   setIsCustomKeyModalOpen(true);
                 }}
                 className={`select-none w-full px-4 py-2.5 text-sm rounded-lg transition-all duration-200 ${clickType === 'Custom'
-                  ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-500/20'
+                  ? 'bg-custom-purple hover:bg-custom-purple-hover text-white shadow-lg shadow-custom-purple/20'
                   : 'bg-gray-100 dark:bg-[#121218] text-gray-800 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-[#121218]/50 hover:text-gray-900 dark:hover:text-gray-200'
                   }`}
               >
@@ -192,7 +192,7 @@ function App() {
                     key={type}
                     onClick={() => setPositionType(type)}
                     className={`px-2 py-2.5 text-sm rounded-lg transition-all duration-200 hover:scale-105 flex-1 ${positionType === type
-                      ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-500/20'
+                      ? 'bg-custom-purple hover:bg-custom-purple-hover text-white shadow-lg shadow-custom-purple/20'
                       : 'bg-gray-100 dark:bg-[#121218] text-gray-800 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-[#121218]/50 hover:text-gray-900 dark:hover:text-gray-200'
                       }`}
                   >
@@ -234,16 +234,16 @@ function App() {
               onClick={() => setIsRunning(!isRunning)}
               className={`
                 select-none relative overflow-hidden
-                ${isRunning ? 'bg-red-600 hover:bg-red-500' : 'bg-purple-600 hover:bg-purple-500'}
+                ${isRunning ? 'bg-red-600 hover:bg-red-500' : 'bg-custom-purple hover:bg-custom-purple-hover'}
                 text-white px-8 py-2 rounded-lg font-medium text-sm
                 transition-all duration-300 ease-out
                 transform hover:scale-105 active:scale-95
-                hover:shadow-xl ${isRunning ? 'hover:shadow-red-500/20' : 'hover:shadow-purple-500/30'}
+                hover:shadow-xl ${isRunning ? 'hover:shadow-red-500/20' : 'hover:shadow-custom-purple/20'}
                 before:absolute before:inset-0
                 before:bg-gradient-to-r
                 ${isRunning
                   ? 'before:from-red-500/0 before:via-red-300/5 before:to-red-500/0'
-                  : 'before:from-purple-500/0 before:via-purple-300/10 before:to-purple-500/0'}
+                  : 'before:from-custom-purple/0 before:via-custom-purple/10 before:to-custom-purple/0'}
                 before:translate-x-[-200%] hover:before:translate-x-[200%]
                 before:transition-transform before:duration-1000 before:ease-out
                 ${isRunning ? 'animate-[pulse_2s_ease-in-out_infinite]' : ''}
@@ -256,11 +256,11 @@ function App() {
 
         {/* Blur Decorations */}
         {/*Top Left*/}
-        <div className="pointer-events-none absolute -top-6 -left-12 w-40 h-40 bg-pink-600 rounded-full filter blur-[100px] opacity-15 dark:opacity-20"></div>
-        <div className="pointer-events-none absolute -top-6 -left-12 w-60 h-60 bg-pink-400 rounded-full filter blur-[200px] opacity-15 dark:opacity-20"></div>
+        <div className="pointer-events-none absolute -top-6 -left-12 w-40 h-40 bg-purple-600 dark:bg-pink-600 rounded-full filter blur-[100px] opacity-25 dark:opacity-20"></div>
+        <div className="pointer-events-none absolute -top-6 -left-12 w-60 h-60 bg-purple-400 dark:bg-pink-400 rounded-full filter blur-[200px] opacity-25 dark:opacity-20"></div>
         {/*Bottom Right*/}
-        <div className="pointer-events-none absolute -bottom-5 -right-14 w-40 h-40 bg-pink-600 rounded-full filter blur-[75px] opacity-10 dark:opacity-10"></div>
-        <div className="pointer-events-none absolute -bottom-5 -right-14 w-60 h-60 bg-pink-700 rounded-full filter blur-[150px] opacity-10 dark:opacity-10"></div>
+        <div className="pointer-events-none absolute -bottom-5 -right-14 w-40 h-40 bg-purple-600 dark:bg-pink-600 rounded-full filter blur-[75px] opacity-20 dark:opacity-10"></div>
+        <div className="pointer-events-none absolute -bottom-5 -right-14 w-60 h-60 bg-purple-700 dark:bg-pink-700 rounded-full filter blur-[150px] opacity-20 dark:opacity-10"></div>
         
       </div>
       <SettingsMenu
