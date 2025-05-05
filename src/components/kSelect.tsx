@@ -15,7 +15,7 @@ function KSelect({
     <select 
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={`select-none w-full bg-gray-700/50 border border-gray-600/50 rounded-lg px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-transparent focus:border-gray-600/50 transition-all appearance-none cursor-pointer ${className}`}
+      className={`select-none w-full bg-gray-100 dark:bg-[#121218] border border-gray-300/50 dark:border-gray-700/50 rounded-lg px-4 py-2.5 text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-transparent focus:border-gray-300/50 dark:focus:border-gray-600/50 transition-all appearance-none cursor-pointer hover:bg-gray-200/80 dark:hover:bg-[#121218]/80 ${className}`}
     >
       {options.map((option) => (
         <option key={option}>{option}</option>

@@ -18,7 +18,7 @@ function KInput({
       type={type}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={`select-none w-full bg-gray-700/50 border border-gray-600/50 rounded-lg px-4 py-2.5 text-sm text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600/50 focus:border-transparent transition-all ${className}`}
+      className={`select-none w-full bg-gray-100 dark:bg-[#121218] border border-gray-300/50 dark:border-gray-700/50 rounded-lg px-4 py-2.5 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300/50 dark:focus:ring-gray-600/50 focus:border-transparent transition-all hover:bg-gray-200/80 dark:hover:bg-[#121218]/80 ${className}`}
       placeholder={placeholder}
     />
   )
