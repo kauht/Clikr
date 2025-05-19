@@ -7,7 +7,8 @@
 - [x] Change colors
 - [x] Make color palet instead of manually entering colors 
 - [x] Make theme work (use tailwind dark/light mode feature)
-- [ ] Change icon for Record & Playback button
+- [ ] Clean up Code
+- [ ] Change icon for "Record & Playback" button
 - [x] Disable inspect element and right click
 - [ ] Add DPI scaling settings (default changes based on resolution)
 - [ ] Improve settings menu transition
