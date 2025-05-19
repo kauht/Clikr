@@ -1,3 +1,4 @@
+import React from 'react';
 import NavBar from './components/NavBar';
 import { ArrowRight, MousePointer2, Settings as SettingsIcon, SwordIcon as Record } from 'lucide-react';
 import { useState, useEffect } from 'react';

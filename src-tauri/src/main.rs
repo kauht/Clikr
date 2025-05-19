@@ -4,15 +4,13 @@
 // Libraries
 use std::thread::{self, JoinHandle};
 use std::time::Duration;
+use std::sync::{Arc, Mutex};
+use std::sync::atomic::{AtomicBool, Ordering};
+
 
 static interval: u64 = 0;
 
-// static mut CLICKER_THREAD: JoinHandle<()> = thread::spawn(|| {
-//     loop {
-//         thread::sleep(Duration::from_millis(interval));
-        
-//     }
-// })
+static CLICKER_THREAD: Arc<AtomicBool> = Arc::new(AtomicBool::new(false));
 
 fn main() {
     first_lib::run()
@@ -24,6 +22,11 @@ fn main() {
 // Clicks until Clicker Thread is stopped
 #[tauri::command]
 fn begin_clicker(ms_interval: i32, button: String, position: Vec<i32>) {
+    static VALUE: bool = CLICKER_THREAD.load(Ordering::Relaxed);
+    let CLICKER_THREAD_CLONE: Arc<AtomicBool> = Arc::clone(&CLICKER_THREAD);
+
+    handler.join().unwrap();
+
     
 }
 // Ends Clicker Thread
