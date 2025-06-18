@@ -13,17 +13,17 @@ A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **Typ
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Requirements
 
-- **Node.js** (v18 or higher)
-- **Rust** (latest stable version)
-- **pnpm** (recommended) or npm
+- **Node.js**
+- **Rust**
+- **pnpm**
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/clikr.git
+   git clone https://github.com/kauht/Clikr
    cd clikr
    ```
 
@@ -35,11 +35,6 @@ A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **Typ
 3. **Run in development mode**
    ```bash
    pnpm tauri dev
-   ```
-
-4. **Build for production**
-   ```bash
-   pnpm tauri build
    ```
 
 
