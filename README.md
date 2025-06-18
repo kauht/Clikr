@@ -1,7 +1,7 @@
-# NiggaClicker
+# Clikr
 ## Tauri + React + Typescript
 
-### To-Do
+### Progress
 - [x] Center the "Auto Clicker" label
 - [x] Make nav bar buttons work
 - [x] Change colors
