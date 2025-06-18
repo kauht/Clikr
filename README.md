@@ -1,4 +1,4 @@
-# NiggaClicker
+# Clikr
 ## Tauri + React + Typescript
 
 ### Progress
