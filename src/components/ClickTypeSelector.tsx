@@ -9,7 +9,7 @@ interface ClickTypeSelectorProps {
 
 const ClickTypeSelector = ({ value, onChange, onCustomClick, customKey }: ClickTypeSelectorProps) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 focus:ring-0 focus:ring-transparent dark:focus:ring-transparent focus:border-transparent dark:focus:border-transparent">
       <div className="relative flex bg-interactive-light dark:bg-interactive-dark rounded-lg p-1 w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-transparent dark:bg-transparent"
@@ -18,7 +18,7 @@ const ClickTypeSelector = ({ value, onChange, onCustomClick, customKey }: ClickT
           }}
         />
         <div
-          className="absolute inset-1 bg-custom-purple rounded-md transition-all duration-300 shadow-lg shadow-custom-purple/20"
+          className="absolute inset-1 bg-custom-purple rounded-md transition-all duration-300 shadow-lg shadow-custom-purple/20 focus:ring-0 focus:ring-transparent dark:focus:ring-transparent focus:border-transparent dark:focus:border-transparent"
           style={{
             width: 'calc(33.333% - 2.8px)',
             transform: value === 'Custom' ? '' : `translateX(${['Left', 'Middle', 'Right'].indexOf(value) * 100}%)`

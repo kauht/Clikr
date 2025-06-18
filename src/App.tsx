@@ -7,6 +7,7 @@ import KInput from './components/kInput';
 import KSelect from './components/kSelect';
 import SettingsMenu from './components/SettingsMenu';
 import ClickTypeSelector from './components/ClickTypeSelector';
+import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue,} from "./components/ui/select"
 
 function App() {
   const [theme, setTheme] = useState('Dark'); // Default Theme
@@ -59,17 +60,43 @@ function App() {
         {/* Click Interval Section */}
         <div className="bg-section-light dark:bg-section-dark backdrop-blur-sm p-6 rounded-lg border border-gray-300/50 dark:border-gray-700/50 mb-4 hover:border-gray-400/50 dark:hover:border-gray-600/50 transition-colors">
           <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-            <ArrowRight className="h-4 w-4 mr-2 text-purple-500"/>
+            <ArrowRight className="size-4 mr-2 text-purple-500"/>
             Click Interval
           </h3>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <KInput value={interval1} onChange={setInterval1}/>
-              <KSelect value={intervalUnit1} onChange={setIntervalUnit1} options={['Minutes', 'Seconds', 'Hours', 'Milliseconds', 'Microseconds']}/>
+              <Select value={intervalUnit1} onValueChange={setIntervalUnit1}>
+                <SelectTrigger className={`select-none w-full bg-gray-100 dark:bg-[#121218] border border-gray-300/50 dark:border-gray-700/50 rounded-lg px-4 py-2.5 text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-0 focus:ring-transparent dark:focus:ring-transparent focus:border-transparent dark:focus:border-transparent transition-all appearance-none cursor-pointer hover:bg-gray-200/80 dark:hover:bg-[#121218]/80 h-[40px]`}>
+                  <SelectValue placeholder="Theme"/>
+                </SelectTrigger>
+                <SelectContent className={'bg-gray-100/90 dark:bg-[#121218]/90 backdrop-blur-md border border-gray-300/50 dark:border-gray-700/50 rounded-lg shadow-xl shadow-purple-500/5 dark:shadow-purple-500/10'}>
+                  <SelectItem value="Minutes" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Minutes</SelectItem>
+                  <SelectItem value="Seconds" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Seconds</SelectItem>
+                  <SelectItem value="Hours" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Hours</SelectItem>
+                  <SelectItem value="Milliseconds" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Milliseconds</SelectItem>
+                  <SelectItem value="Microseconds" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Microseconds</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <KInput value={interval2} onChange={setInterval2}/>
-              <KSelect value={intervalUnit2} onChange={setIntervalUnit2} options={['Minutes', 'Seconds', 'Hours', 'Milliseconds', 'Microseconds']}/>
+              <Select value={intervalUnit2} onValueChange={setIntervalUnit2}>
+                <SelectTrigger className={`select-none w-full bg-gray-100 dark:bg-[#121218] border border-gray-300/50 dark:border-gray-700/50 rounded-lg px-4 py-2.5 text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-0 focus:ring-transparent dark:focus:ring-transparent focus:border-transparent dark:focus:border-transparent transition-all appearance-none cursor-pointer hover:bg-gray-200/80 dark:hover:bg-[#121218]/80 h-[40px]`}>
+                  <SelectValue placeholder="Theme"/>
+                </SelectTrigger>
+                <SelectContent className={'bg-gray-100/90 dark:bg-[#121218]/90 backdrop-blur-md border border-gray-300/50 dark:border-gray-700/50 rounded-lg shadow-xl shadow-purple-500/5 dark:shadow-purple-500/10'}>
+                  <SelectItem value="Minutes" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Minutes</SelectItem>
+                  <SelectItem value="Seconds" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Seconds</SelectItem>
+                  <SelectItem value="Hours" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Hours</SelectItem>
+                  <SelectItem value="Milliseconds" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Milliseconds</SelectItem>
+                  <SelectItem value="Microseconds" className="text-gray-800 dark:text-gray-200 hover:bg-gray-200/50 dark:hover:bg-gray-700/20">Microseconds</SelectItem>
+                </SelectContent>
+              </Select>
+              
+
+              
+
             </div>
           </div>
         </div>
@@ -78,7 +105,7 @@ function App() {
           {/* Click Options Section */}
           <div className="bg-section-light dark:bg-section-dark backdrop-blur-sm p-6 rounded-lg border border-gray-300/50 dark:border-gray-700/50 hover:border-gray-400/50 dark:hover:border-gray-600/50 transition-colors">
             <h3 className="select-none text-sm font-medium text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-              <MousePointer2 className="h-4 w-4 mr-2 text-purple-500" />
+              <MousePointer2 className="size-4 mr-2 text-purple-500" />
               Click Options
             </h3>
 
@@ -88,7 +115,7 @@ function App() {
           {/* Cursor Position Section */}
           <div className="bg-section-light dark:bg-section-dark backdrop-blur-sm p-6 rounded-lg border border-gray-300/50 dark:border-gray-700/50 hover:border-gray-400/50 dark:hover:border-gray-600/50 transition-colors">
             <h3 className="select-none text-sm font-medium text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-              <MousePointer2 className="h-4 w-4 mr-2 text-purple-500" />
+              <MousePointer2 className="size-4 mr-2 text-purple-500" />
               Cursor Position
             </h3>
 

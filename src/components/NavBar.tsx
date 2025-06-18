@@ -9,7 +9,7 @@ const NavBar = () => {
         <div className="w-3 h-3 rounded-full bg-green-600 transition duration-300 hover:opacity-70 transition-opacity" onClick={() => getCurrentWindow().toggleMaximize()}/>
       </div>
       <div data-tauri-drag-region className="select-none flex-1 text-center text-sm font-medium text-gray-800 dark:text-gray-200">
-        {'Auto Clicker'}
+        {'Clikr - By Sammy'}
       </div>
     </div>
   );
