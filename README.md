@@ -11,7 +11,7 @@ A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **Typ
 - **⌨️ Custom Keybindings**: Set custom hotkeys
 
 
-## 🚀 Quick Start
+## 🐧 Usage
 
 ### Requirements
 
