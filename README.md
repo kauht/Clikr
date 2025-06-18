@@ -58,6 +58,7 @@ A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **Typ
 
 ### 🚧 In Progress / Planned
 
+- [ ] Change out cross-platform mouse library with my own
 - [ ] Add splash screen on startup
 - [ ] Clean up code
 - [ ] Change icon for "Record & Playback" button

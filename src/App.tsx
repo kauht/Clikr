@@ -52,6 +52,53 @@ function App() {
     document.documentElement.classList.toggle('dark', theme === 'Dark');
   }, [theme]);
 
+  function calculate_micros() {
+    var micros = 0;
+    const interval1Num = parseFloat(interval1) || 0;
+    const interval2Num = parseFloat(interval2) || 0;
+    
+    switch (intervalUnit1) {
+      case 'Minutes':
+        micros += interval1Num * 60000000;
+        break;
+      case 'Seconds':
+        micros += interval1Num * 1000000;
+        break;
+      case 'Hours':
+        micros += interval1Num * 3600000000;
+        break;
+      case 'Milliseconds':
+        micros += interval1Num * 1000;
+        break;
+      case 'Microseconds':
+        micros += interval1Num;
+        break;
+      default:
+        break;
+    }
+    switch (intervalUnit2) {
+      case 'Minutes':
+        micros += interval2Num * 60000000;
+        break;
+      case 'Seconds':
+        micros += interval2Num * 1000000;
+        break;
+      case 'Hours':
+        micros += interval2Num * 3600000000;
+        break;
+      case 'Milliseconds':
+        micros += interval2Num * 1000;
+        break;
+      case 'Microseconds':
+        micros += interval2Num;
+        break;
+      default:
+        break;
+    }
+    
+    return micros;
+  }
+
   return (
     <div className="h-screen w-screen bg-background-light dark:bg-background-dark backdrop-blur relative overflow-hidden">
       <NavBar/>
