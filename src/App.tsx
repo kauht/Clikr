@@ -7,13 +7,6 @@ import KInput from './components/kInput';
 import KSelect from './components/kSelect';
 import SettingsMenu from './components/SettingsMenu';
 import ClickTypeSelector from './components/ClickTypeSelector';
-import { invoke } from '@tauri-apps/api/core';
-
-function StartClicker() {
-  invoke('auto-click')
-}
-
-invoke('auto-click');
 
 function App() {
   const [theme, setTheme] = useState('Dark'); // Default Theme
@@ -143,7 +136,7 @@ function App() {
               {hotkey} to Start/Stop
             </span>
             <button
-              onClick={() => setIsRunning(!isRunning) }
+              onClick={() => setIsRunning(!isRunning)}
               className={`select-none relative overflow-hidden text-white px-8 py-2 rounded-lg font-medium text-sm transition-all duration-300 ease-out hover:scale-105 active:scale-95 hover:shadow-xl
                 ${isRunning ? 'bg-red-600 hover:bg-red-500 hover:shadow-red-500/20 animate-[pulse_2s_ease-in-out_infinite]' : 'bg-custom-purple hover:bg-custom-purple-hover hover:shadow-custom-purple/20'}
                 before:absolute before:inset-0 before:bg-gradient-to-r before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-1000 before:ease-out
