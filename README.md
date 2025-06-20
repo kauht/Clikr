@@ -55,27 +55,28 @@ A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **Typ
 - [x] Make color palette instead of manually entering colors 
 - [x] Make theme work (use Tailwind dark/light mode feature)
 - [x] Disable inspect element and right click
+- [x] Add Backend-Frontend variables for clicker interval
+- [x] Make start/stop functions
+- [x] Think of a better name for this app
+- [x] Improve Select box dropdown component
 
 ### 🚧 In Progress / Planned
 
-- [ ] Change out cross-platform mouse library with my own
+- [ ] Change icon for "Record & Playback" button
+- [ ] Make "Click Options" and "Cursor Position" icons different
+- [ ] Fix click options slider
+- [ ] Make click options select slider into a component
+- [ ] Make custom click keybind selector work
+- [ ] Make hotkey selector work
+- [ ] Improve settings menu transition animation
 - [ ] Add splash screen on startup
 - [ ] Clean up code
-- [ ] Change icon for "Record & Playback" button
 - [ ] Add DPI scaling settings (default changes based on resolution)
-- [ ] Improve settings menu transition animation
-- [ ] Make click options select slider into a component
 - [ ] Add presets options to the settings
-- [ ] Make hotkey selector work
-- [ ] Make custom click keybind selector work (default to space)
-- [ ] Add menu for Record & Playback button
-- [ ] Make "Click Options" and "Cursor Position" icons different
-- [ ] Significantly improve Select box dropdown component
 - [ ] Add Coordinates selector feature for custom X and Y
-- [ ] Think of a better name for this app
+- [ ] Change out cross-platform mouse library with my own
+- [ ] Add menu for Record & Playback button
 - [ ] Find domain for website
-- [ ] Make start/stop functions `beginClicker(interval, key, pos)` (Autoclicker always running in its own thread, using atomic bool for autoclicker start/stop)
-- [ ] Add Backend-Frontend variables for clicker speed
 
 ## 🤝 Contributing
 

@@ -8,6 +8,8 @@ import KSelect from './components/kSelect';
 import SettingsMenu from './components/SettingsMenu';
 import ClickTypeSelector from './components/ClickTypeSelector';
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue,} from "./components/ui/select"
+import { invoke } from '@tauri-apps/api/core';
+
 
 function App() {
   const [theme, setTheme] = useState('Dark'); // Default Theme
@@ -51,6 +53,16 @@ function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'Dark');
   }, [theme]);
+
+  useEffect(() => {
+    set_interval();
+  }, [interval1, interval2, intervalUnit1, intervalUnit2]);
+
+  useEffect(() => {
+    invoke('get_status').then((status: any) => {
+      setIsRunning(status.clicking);
+    });
+  }, []);
 
   function calculate_micros() {
     var micros = 0;
@@ -97,6 +109,27 @@ function App() {
     }
     
     return micros;
+  }
+
+  function set_interval() {
+    const micros = calculate_micros();
+    invoke('set_interval', { micros });
+  }
+
+  // Handle Start/Stop button
+  async function handleStartStop() {
+    if (!isRunning) {
+        await invoke('start');
+        setIsRunning(true);
+      } else {
+        await invoke('stop');
+        setIsRunning(false);
+      }
+  }
+
+  // Handle click type change (UI only, no backend)
+  function handleClickTypeChange(type: string) {
+    setClickType(type);
   }
 
   return (
@@ -210,7 +243,7 @@ function App() {
               {hotkey} to Start/Stop
             </span>
             <button
-              onClick={() => setIsRunning(!isRunning)}
+              onClick={handleStartStop}
               className={`select-none relative overflow-hidden text-white px-8 py-2 rounded-lg font-medium text-sm transition-all duration-300 ease-out hover:scale-105 active:scale-95 hover:shadow-xl
                 ${isRunning ? 'bg-red-600 hover:bg-red-500 hover:shadow-red-500/20 animate-[pulse_2s_ease-in-out_infinite]' : 'bg-custom-purple hover:bg-custom-purple-hover hover:shadow-custom-purple/20'}
                 before:absolute before:inset-0 before:bg-gradient-to-r before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-1000 before:ease-out

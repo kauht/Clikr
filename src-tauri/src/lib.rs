@@ -14,7 +14,9 @@ fn auto_click() {
     loop {
         if CLICKING.load(Ordering::Relaxed) {
             thread::sleep(Duration::from_micros(INTERVAL.load(Ordering::Relaxed) as u64));
-            
+            if CLICKING.load(Ordering::Relaxed) == false {
+                continue;
+            }
             // Get click key and click it
             let click_type = CLICK_TYPE.load(Ordering::Relaxed);
             let button = match click_type {
@@ -49,6 +51,7 @@ fn set_interval(micros: u64) -> Result<(), String> {
         return Err("Interval has to be at least 10 microseconds (0.01ms)".to_string());
     }
     INTERVAL.store(micros, Ordering::Relaxed);
+    println!("CHANGED TO {} SECONDS", INTERVAL.load(Ordering::Relaxed) as f64 / 1000000.0 as f64);
     Ok(())
 }
 
