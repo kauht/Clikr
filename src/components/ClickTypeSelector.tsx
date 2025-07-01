@@ -1,57 +1,58 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Button } from './ui/button';
 
-interface ClickTypeSelectorProps {
-  value: string;
-  onChange: (value: string) => void;
-  onCustomClick: () => void;
-  customKey?: string;
-}
+const clickTypePositions = { Left: 0, Middle: 1, Right: 2 };
 
-const ClickTypeSelector = ({ value, onChange, onCustomClick, customKey }: ClickTypeSelectorProps) => {
+const ClickTypeSelector = () => {
+  const [selectedType, setSelectedType] = useState<'Left' | 'Middle' | 'Right' | 'Custom'>('Left');
+  const [showHighlight, setShowHighlight] = useState(true);
+  const [highlightWithTransition, setHighlightWithTransition] = useState(true);
+
+  const highlightStyle = {
+    width: 'calc(33.333% - 2.8px)',
+    transform: `translateX(${clickTypePositions[selectedType as keyof typeof clickTypePositions] * 100}%)`,
+  };
+
+  function handleTypeClick(type: 'Left' | 'Middle' | 'Right') {
+    if (selectedType === 'Custom') {
+      setHighlightWithTransition(false);
+      setSelectedType(type);
+      setTimeout(() => {
+        setShowHighlight(true);
+        setHighlightWithTransition(true);
+      }, 10);
+    } else {
+      setSelectedType(type);
+      setShowHighlight(true);
+      setHighlightWithTransition(true);
+    }
+  }
+
+  function handleCustomClick() {
+    setShowHighlight(false);
+    setSelectedType('Custom');
+  }
+
+  const defaultBtn = 'relative z-10 flex-1 px-4 py-2.5 h-[42px] text-sm font-medium';
+  const selectedBtn = 'text-white scale-105';
+  const unselectedBtn = 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200';
+
   return (
-    <div className="space-y-2 focus:ring-0 focus:ring-transparent dark:focus:ring-transparent focus:border-transparent dark:focus:border-transparent">
-      <div className="relative flex bg-interactive-light dark:bg-interactive-dark rounded-lg p-1 w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-transparent dark:bg-transparent"
-          style={{
-            transform: value === 'Custom' ? 'translateX(-100%)' : `translateX(${['Left', 'Middle', 'Right'].indexOf(value) * 33.333}%)`
-          }}
-        />
-        <div
-          className="absolute inset-1 bg-custom-purple rounded-md transition-all duration-300 shadow-lg shadow-custom-purple/20 focus:ring-0 focus:ring-transparent dark:focus:ring-transparent focus:border-transparent dark:focus:border-transparent"
-          style={{
-            width: 'calc(33.333% - 2.8px)',
-            transform: value === 'Custom' ? '' : `translateX(${['Left', 'Middle', 'Right'].indexOf(value) * 100}%)`
-          }}
-        />
-        {['Left', 'Middle', 'Right'].map((type) => (
-          <button
-            key={type}
-            onClick={() => onChange(type)}
-            className={`relative z-10 select-none flex-1 px-4 py-2 text-sm font-medium transition-all duration-200
-              ${value === type
-                ? 'text-white transform scale-105'
-                : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200'
-              }`}
-          >
-            {type}
-          </button>
-        ))}
+    <div className="space-y-2">
+      <div className="relative flex bg-interactive-light dark:bg-interactive-dark rounded-lg p-1 w-full overflow-hidden h-[42px] items-center">
+        <div className={`absolute inset-1 bg-custom-purple rounded-md shadow-lg shadow-custom-purple/20 ${showHighlight ? 'opacity-100' : 'opacity-0'}${highlightWithTransition ? ' transition-all duration-300' : ''}`} style={highlightStyle}/>
+        <Button onClick={() => handleTypeClick('Left')} className={`${defaultBtn} ${selectedType === 'Left' ? selectedBtn : unselectedBtn}`}>Left</Button>
+        <Button onClick={() => handleTypeClick('Middle')} className={`${defaultBtn} ${selectedType === 'Middle' ? selectedBtn : unselectedBtn}`}>Middle</Button>
+        <Button onClick={() => handleTypeClick('Right')} className={`${defaultBtn} ${selectedType === 'Right' ? selectedBtn : unselectedBtn}`}>Right</Button>
       </div>
-      <button
-        onClick={() => {
-          onChange('Custom');
-          onCustomClick();
-        }}
-        className={`select-none w-full px-4 py-2.5 text-sm rounded-lg transition-all duration-200 ${value === 'Custom'
-          ? 'bg-custom-purple hover:bg-custom-purple-hover text-white shadow-lg shadow-custom-purple/20'
-          : 'bg-gray-100 dark:bg-[#121218] text-gray-800 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-[#121218]/50 hover:text-gray-900 dark:hover:text-gray-200'
-          }`}
+      <Button
+        onClick={handleCustomClick}
+        className={`clikr-btn ${selectedType === 'Custom' ? 'clikr-btn-selected' : 'clikr-btn-unselected'}`}
       >
-        {customKey ? `Key: ${customKey}` : 'Custom'}
-      </button>
+        Custom
+      </Button>
     </div>
   );
 };
 
-export default ClickTypeSelector;
+export default ClickTypeSelector; 
