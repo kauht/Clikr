@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import "./App.css";
 import { Input } from './components/ui/input';
 import KSelect from './components/kSelect';
-import SettingsMenu from './components/SettingsMenu';
+import SettingsMenu, { LogsModal } from './components/SettingsMenu';
 import ClickTypeSelector from './components/ClickTypeSelector';
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue,} from "./components/ui/select"
 import { Button } from './components/ui/button';
@@ -23,9 +23,9 @@ function App() {
   const [positionY, setPositionY] = useState('');
   const [clickKey, setClickKey] = useState('Left');
   const [positionType, setPositionType] = useState('Current');
-  const [customKey] = useState('');
+  const [customKey, setCustomKey] = useState('');
   const [isRunning, setIsRunning] = useState(false);
-  const [hotkey] = useState('F6');
+  const [hotkey, setHotkey] = useState('F6');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isCustomKeyModalOpen, setIsCustomKeyModalOpen] = useState(false);
   const [isLogsOpen, setIsLogsOpen] = useState(false);
@@ -38,8 +38,23 @@ function App() {
 
     const handleKeyboardEvents = (e: KeyboardEvent) => {
       const { key, ctrlKey, shiftKey } = e;
-      if ((key.startsWith('F') && key !== 'F6') || (ctrlKey && key === 'r') || (ctrlKey && shiftKey && 'IJCK'.includes(key))) {
+      if ((key.startsWith('F') && key !== hotkey) || (ctrlKey && key === 'r') || (ctrlKey && shiftKey && 'IJCK'.includes(key))) {
         e.preventDefault();
+      }
+
+      // Hybrid: Hotkey to start/stop clicking when app is focused
+      if (key === hotkey && !isCustomKeyModalOpen && document.hasFocus()) {
+        e.preventDefault();
+        StartStop();
+      }
+
+      // Handle custom key binding when modal is open
+      if (isCustomKeyModalOpen) {
+        e.preventDefault();
+        setCustomKey(key);
+        invoke('set_custom_key', { key });
+        setIsCustomKeyModalOpen(false);
+        addLog(`Custom key set to ${key}`);
       }
     };
 
@@ -52,7 +67,7 @@ function App() {
       document.removeEventListener('mousedown', handleMouseEvents);
       document.removeEventListener('keydown', handleKeyboardEvents);
     };
-  }, []);
+  }, [isCustomKeyModalOpen, hotkey]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'Dark');
@@ -67,6 +82,37 @@ function App() {
       setIsRunning(status.clicking);
       addLog('Loaded status from backend');
     });
+  }, []);
+
+  // Poll backend for macro status to keep UI in sync
+  useEffect(() => {
+    const interval = setInterval(() => {
+      invoke('get_status').then((status: any) => {
+        setIsRunning(status.clicking);
+      });
+    }, 500); // Poll every 500ms
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      invoke('set_app_focused', { focused: true });
+    };
+    const handleBlur = () => {
+      invoke('set_app_focused', { focused: false });
+    };
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('blur', handleBlur);
+    // Set initial state
+    if (document.hasFocus()) {
+      invoke('set_app_focused', { focused: true });
+    } else {
+      invoke('set_app_focused', { focused: false });
+    }
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('blur', handleBlur);
+    };
   }, []);
 
   function calculate_micros() {
@@ -130,7 +176,8 @@ function App() {
   }
 
   async function StartStop() {
-    if (!isRunning) {
+    const status: any = await invoke('get_status');
+    if (!status.clicking) {
       await invoke('start');
       setIsRunning(true);
       addLog('Started clicking');
@@ -144,7 +191,10 @@ function App() {
 
   function set_key(type: string) {
     setClickKey(type);
-    
+      // Convert click type to number for backend
+    const clickTypeMap = { 'Left': 0, 'Right': 1, 'Middle': 2, 'Custom': 3 };
+      invoke('set_click_type', { clickType: clickTypeMap[type as keyof typeof clickTypeMap] });
+    addLog(`Click type set to ${type}`);
   }
 
   return (
@@ -202,7 +252,7 @@ function App() {
                 <MousePointer2 className="size-4 mr-2 text-purple-500" />
                 Click Options
               </h3>
-              <ClickTypeSelector value={clickKey} onChange={set_key} onCustomClick={() => setIsCustomKeyModalOpen(true)} customKey={customKey}/>
+              <ClickTypeSelector value={clickKey} onChange={set_key}/>
             </CardContent>
           </Card>
 
@@ -295,8 +345,14 @@ function App() {
         setIsCustomKeyModalOpen={setIsCustomKeyModalOpen}
         theme={theme}
         setTheme={setTheme}
+        hotkey={hotkey}
+        setHotkey={setHotkey}
       />
-
+      <LogsModal
+        isOpen={isLogsOpen}
+        onClose={() => setIsLogsOpen(false)}
+        logs={logs}
+      />
     </div>
   );
 }
