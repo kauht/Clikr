@@ -4,7 +4,6 @@ import { ArrowRight, MousePointer2, Settings as SettingsIcon, History as LogsIco
 import { useState, useEffect } from 'react';
 import "./App.css";
 import { Input } from './components/ui/input';
-import KSelect from './components/kSelect';
 import SettingsMenu, { LogsModal } from './components/SettingsMenu';
 import ClickTypeSelector from './components/ClickTypeSelector';
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue,} from "./components/ui/select"
@@ -114,6 +113,13 @@ function App() {
       window.removeEventListener('blur', handleBlur);
     };
   }, []);
+
+  useEffect(() => {
+    const mode = positionType === 'Choose Position' ? 1 : 0;
+    const x = parseInt(positionX) || 0;
+    const y = parseInt(positionY) || 0;
+    invoke('set_position_mode', { mode, x, y });
+  }, [positionType, positionX, positionY]);
 
   function calculate_micros() {
     var micros = 0;

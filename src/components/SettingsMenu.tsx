@@ -139,29 +139,6 @@ interface LogsModalProps {
 export const LogsModal = ({ isOpen, onClose, logs }: LogsModalProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const logsEndRef = useRef<HTMLDivElement>(null);
-  const [filter, setFilter] = useState('All');
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        onClose();
-      }
-    };
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen, onClose]);
-
-  // Auto-scroll to bottom when logs change
-  useEffect(() => {
-    if (logsEndRef.current) {
-      logsEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [logs, filter, isOpen]);
-
   // Filtering logic
   const filterOptions = ['Start', 'Stop', 'Custom Key', 'Interval'];
   const [selectedTypes, setSelectedTypes] = useState<string[]>(filterOptions);
