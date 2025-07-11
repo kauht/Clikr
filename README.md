@@ -59,27 +59,28 @@ A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **Typ
 - [x] Make start/stop functions
 - [x] Think of a better name for this app
 - [x] Improve Select box dropdown component
+- [x] Fix click options slider
+- [x] Make click options select slider into a component
+- [x] Make custom click keybind selector work
+- [x] Make hotkey selector work
+- [x] Improve settings menu transition animation
+- [x] Change icon for "Record & Playback" button
+- [x] Add Coordinates selector feature for custom X and Y
+- [x] Optimizations
+
 
 ### 🚧 In Progress / Planned
 
-- [ ] Panic key and option "stop on key press"
-- [ ] Change icon for "Record & Playback" button
 - [ ] Make "Click Options" and "Cursor Position" icons different
-- [ ] Fix click options slider
-- [ ] Make click options select slider into a component
-- [ ] Make custom click keybind selector work
-- [ ] Make hotkey selector work
-- [ ] Improve settings menu transition animation
 - [ ] Add splash screen on startup
-- [ ] Clean up code
-- [ ] Optimizations
 - [ ] Add DPI scaling settings (default changes based on resolution)
-- [ ] Add presets options to the settings
-- [ ] Add Coordinates selector feature for custom X and Y
+- [ ] Clean up code
 - [ ] Make icon for this app*
 - [ ] Change out cross-platform mouse library with my own
-- [ ] Add menu for Record & Playback button
 - [ ] Find domain for website
+- [?] Add menu for Record & Playback button
+- [?] Add presets options to the settings
+- [?] Panic key and option "stop on key press"
 
 ## 🤝 Contributing
 
