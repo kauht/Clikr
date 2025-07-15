@@ -2,7 +2,7 @@
 
 A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **TypeScript**.
 
-![Clikr UI](images/vid.mkv)
+![Clikr UI](images/vid.mp4)
 
 ## ✨ Features
 
