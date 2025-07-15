@@ -2,7 +2,8 @@
 
 A modern, cross-platform auto-clicker built with **Tauri**, **React**, and **TypeScript**.
 
-https://github.com/user-attachments/assets/1bd641ac-1a11-4238-a038-72373659051b
+
+https://github.com/user-attachments/assets/dcae43c0-78f4-4438-b3bd-f770df1e895c
 
 
 ## ✨ Features
