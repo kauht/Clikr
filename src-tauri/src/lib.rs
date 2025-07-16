@@ -1,4 +1,3 @@
-// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 use enigo::{keycodes, Enigo, KeyboardControllable, MouseButton, MouseControllable, Key};
 use std::time::Duration;
 use std::thread::{self, JoinHandle};
@@ -6,6 +5,7 @@ use std::sync::atomic::*;
 use std::sync::Arc;
 use rdev::{listen, Event, EventType, Key as RdevKey, Button, EventType::MouseMove};
 use std::sync::Mutex;
+use notifica;
 
 static CLICKING: AtomicBool = AtomicBool::new(false);
 static INTERVAL: AtomicU64 = AtomicU64::new(10000);
@@ -87,6 +87,7 @@ fn callback(event: rdev::Event) {
             if (x - target_x).abs() > 1.0 || (y - target_y).abs() > 1.0 {
                 CLICKING.store(false, Ordering::Relaxed);
                 println!("Stopped clicking due to mouse move");
+                let _ = notifica::notify("Clikr", "Stopped clicking due to mouse move");
             }
         }
     }

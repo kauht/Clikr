@@ -139,22 +139,26 @@ interface LogsModalProps {
 export const LogsModal = ({ isOpen, onClose, logs }: LogsModalProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const logsEndRef = useRef<HTMLDivElement>(null);
-  // Filtering logic
   const filterOptions = ['Start', 'Stop', 'Custom Key', 'Interval'];
   const [selectedTypes, setSelectedTypes] = useState<string[]>(filterOptions);
-  // Filtering logic: show logs that match any selected type
   const filteredLogs = logs.filter(log => {
     if (selectedTypes.length === 0) return false;
     return selectedTypes.some(type => {
-      if (type === 'Start') return log.toLowerCase().includes('started clicking');
-      if (type === 'Stop') return log.toLowerCase().includes('stopped clicking');
-      if (type === 'Custom Key') return log.toLowerCase().includes('custom key');
-      if (type === 'Interval') return log.toLowerCase().includes('interval');
-      return false;
+      switch (type) {
+        case 'Start':
+          return log.toLowerCase().includes('started clicking');
+        case 'Stop':
+          return log.toLowerCase().includes('stopped clicking');
+        case 'Custom Key':
+          return log.toLowerCase().includes('custom key');
+        case 'Interval':
+          return log.toLowerCase().includes('interval');
+        default:
+          return false;
+      }
     });
   });
 
-  // Multi-select handler
   const toggleType = (type: string) => {
     setSelectedTypes(prev =>
       prev.includes(type)
@@ -163,9 +167,7 @@ export const LogsModal = ({ isOpen, onClose, logs }: LogsModalProps) => {
     );
   };
 
-  // Popover state for filter
   const [showFilterPopover, setShowFilterPopover] = useState(false);
-  // Close popover on outside click
   useEffect(() => {
     if (!showFilterPopover) return;
     const handleClick = (e: MouseEvent) => {
